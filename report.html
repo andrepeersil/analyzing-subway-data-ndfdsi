@@ -13253,7 +13253,7 @@ EXITS    = A contagem cumulativa de saídas associadas à catraca desde o últim
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
@@ -13261,7 +13261,7 @@ EXITS    = A contagem cumulativa de saídas associadas à catraca desde o últim
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://s3.amazonaws.com/video.udacity-data.com/topher/2018/November/5bf32290_turnstile/turnstile.html&#39;</span>
 
-<span class="n">u</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">html</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
 <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
@@ -13277,7 +13277,7 @@ EXITS    = A contagem cumulativa de saídas associadas à catraca desde o últim
         <span class="n">filename</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">filenames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39; --&gt; &#39;</span><span class="o">+</span><span class="n">link</span><span class="o">.</span><span class="n">get_text</span><span class="p">())</span>
-        <span class="n">urllib</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
         
 </pre></div>
 
@@ -13332,7 +13332,7 @@ linha 5...</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">create_master_turnstile_file</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
@@ -14157,7 +14157,7 @@ linha 5...</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
@@ -14181,7 +14181,7 @@ linha 5...</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -14979,14 +14979,14 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
 
 <span class="k">def</span> <span class="nf">get_hourly_exits</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="n">diff</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;EXITSn&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;EXITSn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;EXITSn_hourly&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;EXITSn&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;EXITSn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;EXITSn_hourly&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">df</span>
 
@@ -15004,7 +15004,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -15053,7 +15053,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6224816</td>
       <td>2107317</td>
-      <td>1.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15065,7 +15065,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6224850</td>
       <td>2107322</td>
-      <td>5.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15077,7 +15077,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6224885</td>
       <td>2107352</td>
-      <td>30.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15089,7 +15089,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6225005</td>
       <td>2107452</td>
-      <td>100.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15101,7 +15101,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6225248</td>
       <td>2107513</td>
-      <td>61.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15113,7 +15113,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6225548</td>
       <td>2107565</td>
-      <td>52.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15125,7 +15125,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6225716</td>
       <td>2107586</td>
-      <td>21.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15137,7 +15137,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6225741</td>
       <td>2107590</td>
-      <td>4.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15149,7 +15149,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6225762</td>
       <td>2107607</td>
-      <td>17.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15161,7 +15161,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6225879</td>
       <td>2107676</td>
-      <td>69.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15173,7 +15173,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6226063</td>
       <td>2107714</td>
-      <td>38.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15185,7 +15185,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6226295</td>
       <td>2107755</td>
-      <td>41.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15197,7 +15197,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6226407</td>
       <td>2107778</td>
-      <td>23.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15209,7 +15209,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6226413</td>
       <td>2107779</td>
-      <td>1.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15221,7 +15221,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6226460</td>
       <td>2107870</td>
-      <td>91.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15233,7 +15233,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6226625</td>
       <td>2108117</td>
-      <td>247.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15245,7 +15245,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6226906</td>
       <td>2108190</td>
-      <td>73.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15257,7 +15257,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6227611</td>
       <td>2108288</td>
-      <td>98.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15269,7 +15269,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6227770</td>
       <td>2108316</td>
-      <td>28.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15281,7 +15281,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6227785</td>
       <td>2108321</td>
-      <td>5.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15293,7 +15293,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6227837</td>
       <td>2108448</td>
-      <td>127.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15305,7 +15305,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6228001</td>
       <td>2108732</td>
-      <td>284.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15317,7 +15317,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6228295</td>
       <td>2108798</td>
-      <td>66.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15329,7 +15329,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6229118</td>
       <td>2108869</td>
-      <td>71.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15341,7 +15341,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6229332</td>
       <td>2108905</td>
-      <td>36.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15353,7 +15353,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6229347</td>
       <td>2108906</td>
-      <td>1.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15365,7 +15365,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6229394</td>
       <td>2109010</td>
-      <td>104.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15377,7 +15377,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6229553</td>
       <td>2109269</td>
-      <td>259.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15389,7 +15389,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6229829</td>
       <td>2109341</td>
-      <td>72.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>02-00-00</th>
@@ -15401,7 +15401,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>6230582</td>
       <td>2109401</td>
-      <td>60.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -15429,7 +15429,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15441,7 +15441,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15453,7 +15453,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15465,7 +15465,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15477,7 +15477,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15489,7 +15489,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15501,7 +15501,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15513,7 +15513,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15525,7 +15525,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15537,7 +15537,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15549,7 +15549,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15561,7 +15561,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15573,7 +15573,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15585,7 +15585,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15597,7 +15597,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15609,7 +15609,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15621,7 +15621,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15633,7 +15633,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15645,7 +15645,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15657,7 +15657,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15669,7 +15669,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15681,7 +15681,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15693,7 +15693,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15705,7 +15705,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15717,7 +15717,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15729,7 +15729,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15741,7 +15741,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15753,7 +15753,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15765,7 +15765,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>00-05-01</th>
@@ -15777,7 +15777,7 @@ Para isso crie uma coluna chamada de EXITSn_hourly e insira a diferença entre a
       <td>REGULAR</td>
       <td>5554</td>
       <td>299</td>
-      <td>0.0</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -15811,7 +15811,7 @@ Por favor, devolva a hora como um número inteiro.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">time_to_hour</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
@@ -15843,7 +15843,7 @@ Nós complementamos para você este arquivo com os dados de clima de Nova Iorque
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -15873,7 +15873,7 @@ Nós complementamos para você este arquivo com os dados de clima de Nova Iorque
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">num_rainy_days</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
@@ -15896,7 +15896,7 @@ Nós complementamos para você este arquivo com os dados de clima de Nova Iorque
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -15922,7 +15922,7 @@ Nós complementamos para você este arquivo com os dados de clima de Nova Iorque
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -15953,7 +15953,7 @@ Nós complementamos para você este arquivo com os dados de clima de Nova Iorque
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -15978,7 +15978,7 @@ Nós complementamos para você este arquivo com os dados de clima de Nova Iorque
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">avg_weekend_temperature</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
@@ -16003,7 +16003,7 @@ Nós complementamos para você este arquivo com os dados de clima de Nova Iorque
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -16028,7 +16028,7 @@ Nós complementamos para você este arquivo com os dados de clima de Nova Iorque
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -16059,7 +16059,7 @@ Nós complementamos para você este arquivo com os dados de clima de Nova Iorque
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -16090,7 +16090,7 @@ Abaixo está um exemplo sobre como traçar histogramas com pandas e matplotlib:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -16098,16 +16098,18 @@ Abaixo está um exemplo sobre como traçar histogramas com pandas e matplotlib:
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="k">def</span> <span class="nf">entries_histogram</span><span class="p">(</span><span class="n">turnstile_weather</span><span class="p">):</span>
+    <span class="n">turnstile_weather</span><span class="p">[</span><span class="s1">&#39;ENTRIESn_hourly&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">turnstile_weather</span><span class="p">[</span><span class="s1">&#39;ENTRIESn_hourly&#39;</span><span class="p">])</span>
+    <span class="n">turnstile_weather</span><span class="p">[</span><span class="s1">&#39;rain&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">turnstile_weather</span><span class="p">[</span><span class="s1">&#39;rain&#39;</span><span class="p">])</span>
     
-    <span class="n">filtered_rain</span> <span class="o">=</span> <span class="n">turnstile_weather</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">turnstile_weather</span><span class="p">:</span> <span class="n">turnstile_weather</span><span class="o">.</span><span class="n">rain</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">]</span>
-    <span class="n">filtered_without_rain</span> <span class="o">=</span> <span class="n">turnstile_weather</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">turnstile_weather</span><span class="p">:</span> <span class="n">turnstile_weather</span><span class="o">.</span><span class="n">rain</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">]</span>
-    
+    <span class="n">filtered_rain</span> <span class="o">=</span> <span class="n">turnstile_weather</span><span class="p">[</span><span class="n">turnstile_weather</span><span class="p">[</span><span class="s1">&#39;rain&#39;</span><span class="p">]</span><span class="o">==</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="n">filtered_without_rain</span> <span class="o">=</span> <span class="n">turnstile_weather</span><span class="p">[</span><span class="n">turnstile_weather</span><span class="p">[</span><span class="s1">&#39;rain&#39;</span><span class="p">]</span><span class="o">==</span> <span class="mf">1.0</span><span class="p">]</span>
     
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">filtered_rain</span><span class="p">[</span><span class="s1">&#39;ENTRIESn_hourly&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">filtered_without_rain</span><span class="p">[</span><span class="s1">&#39;ENTRIESn_hourly&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">filtered_rain</span><span class="p">[</span><span class="s1">&#39;ENTRIESn_hourly&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">filtered_without_rain</span><span class="p">[</span><span class="s1">&#39;ENTRIESn_hourly&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;rainining&#39;</span><span class="p">,</span><span class="s1">&#39;not raining&#39;</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Entries per hour&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">plt</span>
 
@@ -16126,22 +16128,30 @@ Abaixo está um exemplo sobre como traçar histogramas com pandas e matplotlib:
 
 <div class="output_area">
 
+    <div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;module &#39;matplotlib.pyplot&#39; from &#39;c:\\users\\andré\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\matplotlib\\pyplot.py&#39;&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-2-bc46db31b460&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> numpy <span class="ansi-green-fg">as</span> np
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">import</span> pandas
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> matplotlib<span class="ansi-blue-fg">.</span>pyplot <span class="ansi-green-fg">as</span> plt
-<span class="ansi-green-intense-fg ansi-bold">      4</span> 
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">def</span> entries_histogram<span class="ansi-blue-fg">(</span>turnstile_weather<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
 
-<span class="ansi-red-fg">ImportError</span>: No module named matplotlib.pyplot</pre>
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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taQfAvsCo4CFgIBRkkYAfycbzP/XCvbHzKxL+vWvf13tJmxRyTGVhyXNBR4DNgOLyc4W7gJulvSdFLshVbkBuElSA9kZyqS0n2WS5gDL037Oj4i3ASRdAMwnu7NsZkQsq1R/zMysfRWdpiUipgPTW4SfIRsraVl2I3BGK/u5AriiRPxusvEVMzPrAvyLejMzy42TipmZ5cazFJtZbbrvu61u2uXNTbCdU99zzMU72KBt3XjjjYwfP5599923w/uYN28ey5cv56KLWp+JatWqVVx44YXMnTu31TKdxWcqZmYVcuONN7JqVclfOmyltWlZAE455ZQ2EwrAvvvu2yUSCjipmJmVpXna+3POOYeDDjqI8ePH88YbbwCwZMkSxo0bxwc+8AFOO+001q1bx9y5c1m0aBGf/vSnGTNmzJayzerr67nkkks4+uijueaaa7jjjjs44ogjOPTQQznuuOO2TJF/4403csEFFwDwmc98hgsvvJAPfehDjBw5kt///vdb2nbwwQdvKX/66aczYcIERo0axTe+8Y0tx7zhhhs44IADqK+v55xzztmy3zw5qZiZlWnlypWcf/75LFu2jAEDBnDrrbcCMHnyZK688kqWLl3K+9//fi677DI++clPUldXx69+9SuWLFlC3759t9nfK6+8wv3338/XvvY1PvzhD/PQQw+xePFiJk2axPe///2SbVi9ejUPPPAAd95551bPcCm2ZMkSbrnlFp544gluueUWXnjhBVatWsXll1/OQw89xIIFC3jqqafy+2CKeEzFzKxMI0aM2DL9SfMU9evXr+eVV17h6KOPBmDKlCmccUbJX0ds48wzz9yy3NjYyJlnnsnq1at58803GTGi9Owdp556KjvttBOjR4/mpZdeKlnm2GOP3TL/1+jRo/nb3/7GP/7xD44++mgGDRoEwBlnnMFf/pL/k2x9pmJmVqZSU8/viOZp9AG++MUvcsEFF/DEE0/w05/+tOQ0+i3b0NrcjdWcIt9JxcxsB/Tv35+BAwdueQTwTTfdtOWspV+/fmzYsKGs/axfv56hQ7MJ2GfNmtVO6e13+OGHc//997Nu3To2b9685dJd3nz5y8xqUxu3AL+5YQO7duKEkrNmzeLcc8/l9ddfZ+TIkfziF78AsoH1c889l759+/Lggw+WHFdpdumll3LGGWcwdOhQxo0bx7PPPptr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
+"
+>
 </div>
+
 </div>
 
 </div>
@@ -16178,7 +16188,7 @@ Abaixo está um exemplo sobre como traçar histogramas com pandas e matplotlib:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -16211,7 +16221,7 @@ Abaixo está um exemplo sobre como traçar histogramas com pandas e matplotlib:
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -16259,7 +16269,7 @@ Abaixo está um exemplo sobre como traçar histogramas com pandas e matplotlib:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -16295,7 +16305,7 @@ Abaixo está um exemplo sobre como traçar histogramas com pandas e matplotlib:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
